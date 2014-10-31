@@ -1,7 +1,12 @@
 package main
 
+// Simple program for playing with boltdb.
+//
+// To dump the raw database file:
+//
+//  hexdump -C bolt.db
+
 import (
-	"fmt"
 	"log"
 
 	"github.com/boltdb/bolt"
@@ -16,8 +21,10 @@ func main() {
 	}
 	defer db.Close()
 
-	key := []byte("mykey")
-	value := []byte("myvalue")
+	//key1 := []byte("key1")
+	//value1 := []byte("value333")
+	key2 := []byte("anotherkey3")
+	value2 := []byte("value333")
 
 	// store some data
 	err = db.Update(func(tx *bolt.Tx) error {
@@ -26,26 +33,8 @@ func main() {
 			return err
 		}
 
-		err = bucket.Put(key, value)
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// retrieve the data
-	err = db.View(func(tx *bolt.Tx) error {
-		bucket := tx.Bucket(world)
-		if bucket == nil {
-			return fmt.Errorf("Bucket %q not found!", world)
-		}
-
-		val := bucket.Get(key)
-		fmt.Println(string(val))
+		//_ = bucket.Put(key1, value1)
+		_ = bucket.Put(key2, value2)
 
 		return nil
 	})
