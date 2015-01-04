@@ -53,7 +53,7 @@ func main() {
 			return err
 		}
 
-		for i := 0; i < 100000; i++ {
+		for i := 0; i < 1000000; i++ {
 			key := []byte(strconv.Itoa(i) + "cpu.load")
 			_ = bucket.Put(key, value)
 		}
