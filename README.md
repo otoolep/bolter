@@ -1,1 +1,1 @@
-Experimentation with boltdb.
+Experimentation with [Bolt DB](https://github.com/boltdb/bolt).
